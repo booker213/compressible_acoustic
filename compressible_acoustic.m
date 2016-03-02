@@ -17,6 +17,7 @@ clc; close all; clear all;
 % Currently attempts to save animation as movies fail.
 % Uncomment pause code in the timestep loop to view wave evolution.
 
+% Need to add clause for Nx = 2 , 3 in matrix loops
 
 %% Mesh Constants
 
