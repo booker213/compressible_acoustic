@@ -27,7 +27,7 @@ Nx = 16; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
-periods = 100; % End time for simulation, as period = 1 non dim time
+periods = 1000; % End time for simulation, as period = 1 non dim time
 t = 0; % Starting time
 %% Storage
 % Vector for solution
@@ -115,7 +115,7 @@ while t < periods
     axis([  a L -1 1])
     xlabel('x')
     ylabel('u')
-    %pause(0.01)
+    pause(0.01)
     hold off
     
     
