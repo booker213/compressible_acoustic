@@ -27,7 +27,7 @@ Nx = 16; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
-periods = 1000; % End time for simulation, as period = 1 non dim time
+periods = 100; % End time for simulation, as period = 1 non dim time
 t = 0; % Starting time
 %% Storage
 % Vector for solution
@@ -90,8 +90,8 @@ DIV(2*Nx,Nx) = theta;
 % P = I - 0.5*dt*DIV
 % Q = I + 0.5*dt*DIV
 
-P = eye(2*Nx) + dt*0.5*DIV;
-Q = eye(2*Nx) - dt*0.5*DIV;
+P = eye(2*Nx) - dt*0.5*DIV;
+Q = eye(2*Nx) + dt*0.5*DIV;
 
 % Inverse of P\Q is not time dependant so we will build it here
 Inverse = P\Q;
