@@ -6,3 +6,7 @@ eqn 10 -> sum e to sum de
 
 eqn 8 -> Integrate by parts and to introduce connectivity we approximate 
 extra ste[ needed
+
+under epn 9 emphasis to emphasise
+
+include skew symmetry J matrix

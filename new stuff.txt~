@@ -1,0 +1,8 @@
+write element contributions  dfe/dt
+
+move changing sum over elements to traces earlier
+
+eqn 10 -> sum e to sum de
+
+eqn 8 -> Integrate by parts and to introduce connectivity we approximate 
+extra ste[ needed
