@@ -45,8 +45,8 @@ X = linspace(a+dx, L-dx, Nx);
 
 % For each element we use the cell centre of the initial condition
 for i = 1:Nx
-    U(i) = -sin(2*pi*X(i))*sin(2*pi*0.125);
-    U(Nx+i) = -cos(2*pi*X(i))*cos(2*pi*0.125);
+    U(i) = -sin(4*pi*X(i))*sin(4*pi*0.125);
+    U(Nx+i) = -cos(4*pi*X(i))*cos(4*pi*0.125);
 end 
 
 % Initial Energy
