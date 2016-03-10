@@ -25,7 +25,7 @@ a = 0; % Mesh starting point
 L = 1; % Mesh end point
 Nx = 16; % Number of elements
 dx = (L-a)/Nx; % Element size
-dt = dx; % Timestep discretisation
+dt = dx/2; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
 periods = 1000; % End time for simulation, as period = 1 non dim time
 t = 0; % Starting time
