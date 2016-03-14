@@ -23,7 +23,7 @@ clc; close all; clear all;
 
 a = 0; % Mesh starting point
 L = 1; % Mesh end point
-Nx = 2048; % Number of elements
+Nx = 128; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
