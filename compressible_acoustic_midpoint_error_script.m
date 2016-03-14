@@ -23,7 +23,7 @@ clc; close all; clear all;
 
 a = 0; % Mesh starting point
 L = 1; % Mesh end point
-Nx = 16; % Number of elements
+Nx = 2048; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
@@ -33,7 +33,10 @@ t = 0; % Starting time
 % Vector for solution
 % U = [U,R]^T
 U = zeros(2*Nx,1);
+U_exact = zeros(2*Nx,1);
 
+error_U = zeros(Nx,1);
+error_R = zeros(Nx,1);
 % Discrete Energy
 H = zeros(ceil(periods/dt),1);
 
@@ -99,7 +102,7 @@ Inverse = P\Q;
 %F(ceil(periods/dt)) = struct('cdata',[],'colormap',[]);
 %% Timestep Loop
 count_energy = 0;
-figure
+%figure
 while t < periods
     t =t+dt;
     % Calculate  U^(n+1) from  U^n and advance in time
@@ -109,14 +112,14 @@ while t < periods
     H(count_energy,1) = sum(0.5*dx*(U(1:Nx).*U(1:Nx) + U(Nx+1:2*Nx).*U(Nx+1:2*Nx)));
     
     
-    % Plot velocity 
-    plot(X,U(1:Nx))
-    title(['Solution after ', num2str(dt*count_energy), ' periods - Velocity u'])
-    axis([  a L -1 1])
-    xlabel('x')
-    ylabel('u')
-    pause(0.01)
-    hold off
+%     % Plot velocity 
+%     plot(X,U(1:Nx))
+%     title(['Solution after ', num2str(dt*count_energy), ' periods - Velocity u'])
+%     axis([  a L -1 1])
+%     xlabel('x')
+%     ylabel('u')
+%     pause(0.01)
+%     hold off
     
     
     
@@ -124,11 +127,26 @@ end
 %F(count_energy)=getframe(gcf);
 %movie2avi(F, 'velocity.avi')
 
-% Plot Error in Energy
-figure
-hold all
-plot(linspace(0,periods,periods/dt), (H-H0)/H0)
-title('Relative Error in Energy')
-xlabel('Number of Periods')
-hold off
+% % Plot Error in Energy
+% figure
+% hold all
+% plot(linspace(0,periods,periods/dt), (H-H0)/H0)
+% title('Relative Error in Energy')
+% xlabel('Number of Periods')
+% hold off
+
+% Exact Solution at time = t_end
+for i = 1:Nx
+    U_exact(i) = sin(2*pi*X(i))*sin(2*pi*(t+0.125));
+    U_exact(Nx+i) = cos(2*pi*X(i))*cos(2*pi*(t+0.125));
+    
+    error_U(i) = (U(i) - U_exact(i))^2;
+    error_R(i) = (U(Nx+i) - U_exact(Nx+i))^2;
+end 
+
+% 
+% l_infty_U = max(error_U);
+% l_infty_R = max(error_R);
+l2_U = sqrt(sum(error_U)/Nx);
+l2_R = sqrt(sum(error_R)/Nx);
 
