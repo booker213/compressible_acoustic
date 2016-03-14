@@ -1,0 +1,23 @@
+Stormer verlet vs Implicit mid point:
+
+Implicit midpoint:
+
+Exactly conserves discrete energy.
+
+Involves matrix inversion and is the slower method.
+
+Stormer Verlet:
+
+Energy is not conserved.
+Shadow energy conserved, with discrete energy bounded.
+
+scheme is order 2, so energy bound should decrease by 4 if dt is halved.
+
+Faster of the methods
+
+
+16 elements
+100 periods:
+
+S-V = 26.614s 
+IM = 28.323s
