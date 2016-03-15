@@ -284,6 +284,7 @@ The Stormer-Verlet scheme does not conserve the exact energy of the ODE system, 
 \subsection{Energy}
 
 Figures \ref{test} and \ref{test2} show the discrete energy of our compressible fluid system over a 1000 simulated wave periods. As expected the implicit midpoint scheme conserves this discrete energy to machine precision for all spatial discretisations tested from $Nx$ = 4 to 2048.  The Stormer-Verlet scheme does indeed oscillate around a tight bound for the discrete energy and as shown in the two figures, this energy bound will decrease by 4 when the timestep is halved, showing that the scheme is indeed order 2 in time. 
+
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{error1.png}
