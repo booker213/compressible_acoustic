@@ -179,8 +179,8 @@ As the solution expansion coefficients depend only on time, then the spatial der
 
  \begin{equation}
 \begin{aligned}
- \{ \mathcal{F},  \mathcal{H}\} = & \sum_\Gamma \bigg ( \frac{\partial H}{\partial R_-}\frac{\partial F}{\partial U_-} - \frac{\partial F}{\partial R_-}\frac{\partial H}{\partial U_-}\bigg  ) \frac{1-\theta}{\Delta x} +  \bigg  ( \frac{\partial H}{\partial R-}\frac{\partial F}{\partial U_+} - \frac{\partial F}{\partial R_-}\frac{\partial H}{\partial U_+}\bigg  ) \frac{\theta}{\Delta x}\\
- & + \bigg  ( - \frac{\partial H}{\partial R_+}\frac{\partial F}{\partial U_-} + \frac{\partial F}{\partial R_+}\frac{\partial H}{\partial U_-}\bigg  ) \frac{1-\theta}{\Delta x} + \bigg  ( - \frac{\partial H}{\partial R_+}\frac{\partial F}{\partial U_+} + \frac{\partial F}{\partial R_+}\frac{\partial H}{\partial U_+}\bigg  ) \frac{\theta}{\Delta x}.
+ \{ \mathcal{F},  \mathcal{H}\} = & \sum_\Gamma \bigg ( \frac{\partial H}{\partial R_-}\frac{\partial F}{\partial U_-} - \frac{\partial F}{\partial R_-}\frac{\partial H}{\partial U_-}\bigg  ) \frac{1-\theta}{(\Delta x)^2} +  \bigg  ( \frac{\partial H}{\partial R-}\frac{\partial F}{\partial U_+} - \frac{\partial F}{\partial R_-}\frac{\partial H}{\partial U_+}\bigg  ) \frac{\theta}{(\Delta x)^2} \\
+ & + \bigg  ( - \frac{\partial H}{\partial R_+}\frac{\partial F}{\partial U_-} + \frac{\partial F}{\partial R_+}\frac{\partial H}{\partial U_-}\bigg  ) \frac{1-\theta}{(\Delta x)^2}  + \bigg  ( - \frac{\partial H}{\partial R_+}\frac{\partial F}{\partial U_+} + \frac{\partial F}{\partial R_+}\frac{\partial H}{\partial U_+}\bigg  ) \frac{\theta}{(\Delta x)^2} .
  \end{aligned}
  \end{equation}
 
@@ -193,37 +193,37 @@ The discrete Hamiltonian similarly becomes
  
   \begin{equation}
 \begin{aligned}
- \{ \mathcal{F},  \mathcal{H}\} = & \sum_\Gamma \bigg ( R_-\frac{\partial F}{\partial U_-} - \frac{\partial F}{\partial R_-} U_-\bigg  ) (1-\theta) +  \bigg  ( R_-\frac{\partial F}{\partial U_+} - \frac{\partial F}{\partial R_-} U_+\bigg  ) \theta\\
- & + \bigg  ( -  R_+\frac{\partial F}{\partial U_-} + \frac{\partial F}{\partial R_+} U_-\bigg  )  (1-\theta) + \bigg  ( -  R_+\frac{\partial F}{\partial U_+} + \frac{\partial F}{\partial R_+}U_+\bigg  ) \theta.
+ \{ \mathcal{F},  \mathcal{H}\} = & \sum_\Gamma \bigg ( R_-\frac{\partial F}{\partial U_-} - \frac{\partial F}{\partial R_-} U_-\bigg  ) \frac{1-\theta}{\Delta x} +  \bigg  ( R_-\frac{\partial F}{\partial U_+} - \frac{\partial F}{\partial R_-} U_+\bigg  ) \frac{\theta}{\Delta x}\\
+ & + \bigg  ( -  R_+\frac{\partial F}{\partial U_-} + \frac{\partial F}{\partial R_+} U_-\bigg  ) \frac{1-\theta}{\Delta x} + \bigg  ( -  R_+\frac{\partial F}{\partial U_+} + \frac{\partial F}{\partial R_+}U_+\bigg  )\frac{\theta}{\Delta x}.
  \end{aligned}
  \end{equation}
 We will consider the two faces between three elements $e-1$, $e$ and, $e+ 1$. We first consider the face between the elements  $e-1$ and  $e$, the Poisson bracket yields
 \begin{equation}
 \begin{aligned}
-\frac{\partial F}{\partial U_{e-1}}R_{e-1}(1-\theta) + \frac{\partial F}{\partial U_{e}}R_{e-1}\theta - \frac{\partial F}{\partial U_{e-1}}R_{e}(1-\theta) -\frac{\partial F}{\partial U_{e}}R_{e}\theta\\
--\frac{\partial F}{\partial R_{e-1}}U_{e-1}(1-\theta) -\frac{\partial F}{\partial R_{e-1}}U_{e}\theta +\frac{\partial F}{\partial R_{e}}U_{e-1}(1-\theta) +\frac{\partial F}{\partial R_{e}}U_{e}\theta.
+\frac{\partial F}{\partial U_{e-1}}R_{e-1}\frac{1-\theta}{\Delta x}  + \frac{\partial F}{\partial U_{e}}R_{e-1} \frac{\theta}{\Delta x} - \frac{\partial F}{\partial U_{e-1}}R_{e}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial U_{e}}R_{e} \frac{\theta}{\Delta x}\\
+-\frac{\partial F}{\partial R_{e-1}}U_{e-1}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial R_{e-1}}U_{e} \frac{\theta}{\Delta x} +\frac{\partial F}{\partial R_{e}}U_{e-1}\frac{1-\theta}{\Delta x}  +\frac{\partial F}{\partial R_{e}}U_{e} \frac{\theta}{\Delta x}.
 \end{aligned}
 \end{equation}
 For the face between the elements  $e$ and  $e+1$, the Poisson bracket yields
 \begin{equation}
 \begin{aligned}
-\frac{\partial F}{\partial U_{e}}R_{e}(1-\theta) + \frac{\partial F}{\partial U_{e+1}}R_{e}\theta - \frac{\partial F}{\partial U_{e}}R_{e+1}(1-\theta) -\frac{\partial F}{\partial U_{e+1}}R_{e+1}\theta\\
--\frac{\partial F}{\partial R_{e}}U_{e}(1-\theta) -\frac{\partial F}{\partial R_{e}}U_{e+1}\theta +\frac{\partial F}{\partial R_{e+1}}U_{e}(1-\theta) +\frac{\partial F}{\partial R_{e+1}}U_{e+1}\theta.
+\frac{\partial F}{\partial U_{e}}R_{e}\frac{1-\theta}{\Delta x} ) + \frac{\partial F}{\partial U_{e+1}}R_{e} \frac{\theta}{\Delta x} - \frac{\partial F}{\partial U_{e}}R_{e+1}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial U_{e+1}}R_{e+1} \frac{\theta}{\Delta x}\\
+-\frac{\partial F}{\partial R_{e}}U_{e}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial R_{e}}U_{e+1} \frac{\theta}{\Delta x}+\frac{\partial F}{\partial R_{e+1}}U_{e}\frac{1-\theta}{\Delta x}  +\frac{\partial F}{\partial R_{e+1}}U_{e+1} \frac{\theta}{\Delta x}.
 \end{aligned}
 \end{equation}
 By collecting the contributions to an element $e$ we obtain the following scheme for internal elements
 \begin{equation}
 \begin{aligned}
-\frac{d F}{d t} & =\frac{\partial F}{\partial U_{e}}\bigg [    R_{e-1}\theta - R_{e}\theta + R_{e}(1-\theta) - R_{e+1}(1-\theta)                         \bigg]\\
-&+\frac{\partial F}{\partial R_{e}}\bigg [    U_{e-1}(1-\theta)   + U_{e}\theta    - U_{e}(1-\theta)    - U_{e+1}\theta        \bigg].
+\frac{d F}{d t} & =\frac{\partial F}{\partial U_{e}}\frac{1}{\Delta x}\bigg [    R_{e-1} \theta - R_{e} \theta+ R_{e}(1-\theta) - R_{e+1}(1-\theta)                         \bigg]\\
+&+\frac{\partial F}{\partial R_{e}}\frac{1}{\Delta x}\bigg [    U_{e-1}(1-\theta)  + U_{e} \theta  - U_{e}(1-\theta)    - U_{e+1}\theta        \bigg].
 \end{aligned}
 \end{equation}
 
 We will note here the element ODEs for internal elements that will be yielded from the above scheme,
 \begin{equation}
 \begin{aligned}
-\frac{d U_e}{d t} & =\bigg [    R_{e-1}\theta - R_{e}\theta + R_{e}(1-\theta) - R_{e+1}(1-\theta)                         \bigg]\\
-\frac{d R_e}{d t} & =\bigg [    U_{e-1}(1-\theta)   + U_{e}\theta    - U_{e}(1-\theta)    - U_{e+1}\theta        \bigg].
+\frac{d U_e}{d t} & = \frac{1}{\Delta x}\bigg [    R_{e-1} \theta - R_{e} \theta+ R_{e}(1-\theta) - R_{e+1}(1-\theta)      \bigg]\\
+\frac{d R_e}{d t} & = \frac{1}{\Delta x}\bigg [  U_{e-1}(1-\theta)  + U_{e} \theta  - U_{e}(1-\theta)    - U_{e+1}\theta          \bigg].
 \end{aligned}
 \end{equation}
 
@@ -232,29 +232,29 @@ We will note here the element ODEs for internal elements that will be yielded fr
 In this section we will consider  how the solid wall boundaries at $x$ = 0 and $x$ = $1$ are modeled. For the element 1, there is no left boundary contribution
 \begin{equation}
 \begin{aligned}
-\frac{\partial F}{\partial U_{1}}R_{1}(1-\theta) + \frac{\partial F}{\partial U_{2}}R_{1}\theta - \frac{\partial F}{\partial U_{1}}R_{2}(1-\theta) -\frac{\partial F}{\partial U_{2}}R_{2}\theta\\
--\frac{\partial F}{\partial R_{1}}U_{1}(1-\theta) -\frac{\partial F}{\partial R_{1}}U_{2}\theta +\frac{\partial F}{\partial R_{2}}U_{1}(1-\theta) +\frac{\partial F}{\partial R_{2}}U_{2}\theta.
+\frac{\partial F}{\partial U_{1}}R_{1}\frac{1-\theta}{\Delta x}  + \frac{\partial F}{\partial U_{2}}R_{1} \frac{\theta}{\Delta x} - \frac{\partial F}{\partial U_{1}}R_{2}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial U_{2}}R_{2} \frac{\theta}{\Delta x}\\
+-\frac{\partial F}{\partial R_{1}}U_{1}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial R_{1}}U_{2} \frac{\theta}{\Delta x}+\frac{\partial F}{\partial R_{2}}U_{1}\frac{1-\theta}{\Delta x}  +\frac{\partial F}{\partial R_{2}}U_{2} \frac{\theta}{\Delta x}.
 \end{aligned}
 \end{equation}
 Counting the contributions to element $1$ yields
 \begin{equation}
 \begin{aligned}
-\frac{d F}{d t} &=\frac{\partial F}{\partial U_{e}}\bigg [    R_{1}(1-\theta) - R_{2}(1-\theta)                         \bigg]\\
-&+\frac{\partial F}{\partial R_{e}}\bigg [     - U_{1}(1-\theta)    - U_{2}\theta        \bigg].
+\frac{d F}{d t} &=\frac{\partial F}{\partial U_{e}}\frac{1}{\Delta x}\bigg [    R_{1}(1-\theta) - R_{2}(1-\theta)                    \bigg]\\
+&+\frac{\partial F}{\partial R_{e}}\frac{1}{\Delta x}\bigg [     - U_{1}(1-\theta)   - U_{2} \theta      \bigg].
 \end{aligned}
 \end{equation}
 For the right most element, which we will label element $Nx$ there is no right boundary contribution
 \begin{equation}
 \begin{aligned}
- \frac{\partial F}{\partial U_{Nx-1}}R_{Nx-1}(1-\theta) + \frac{\partial F}{\partial U_{Nx}}R_{Nx-1}\theta - \frac{\partial F}{\partial U_{Nx-1}}R_{Nx}(1-\theta) -\frac{\partial F}{\partial U_{Nx}}R_{Nx}\theta\\
--\frac{\partial F}{\partial R_{Nx-1}}U_{Nx-1}(1-\theta) -\frac{\partial F}{\partial R_{Nx-1}}U_{Nx}\theta +\frac{\partial F}{\partial R_{Nx}}U_{Nx-1}(1-\theta) +\frac{\partial F}{\partial R_{Nx}}U_{Nx}\theta.
+ \frac{\partial F}{\partial U_{Nx-1}}R_{Nx-1}\frac{1-\theta}{\Delta x}  + \frac{\partial F}{\partial U_{Nx}}R_{Nx-1} \frac{\theta}{\Delta x} - \frac{\partial F}{\partial U_{Nx-1}}R_{Nx}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial U_{Nx}}R_{Nx} \frac{\theta}{\Delta x}\\
+-\frac{\partial F}{\partial R_{Nx-1}}U_{Nx-1}\frac{1-\theta}{\Delta x}  -\frac{\partial F}{\partial R_{Nx-1}}U_{Nx} \frac{\theta}{\Delta x}+\frac{\partial F}{\partial R_{Nx}}U_{Nx-1}\frac{1-\theta}{\Delta x}  +\frac{\partial F}{\partial R_{Nx}}U_{Nx} \frac{\theta}{\Delta x}.
 \end{aligned}
 \end{equation}
 Counting the contributions to element $Nx$ yields
 \begin{equation}
 \begin{aligned}
-\frac{d F}{d t}&=\frac{\partial F}{\partial U_{e}}\bigg [    R_{Nx-1}\theta - R_{Nx}\theta                  \bigg]\\
-&+\frac{\partial F}{\partial R_{e}}\bigg [    U_{Nx-1}(1-\theta)   + U_{Nx}\theta           \bigg].
+\frac{d F}{d t}&=\frac{\partial F}{\partial U_{e}}\frac{1}{\Delta x}\bigg [    R_{Nx-1}\theta - R_{Nx}\theta                  \bigg]\\
+&+\frac{\partial F}{\partial R_{e}} \frac{1}{\Delta x}\bigg [    U_{Nx-1}(1-\theta)    + U_{Nx}\theta           \bigg].
 \end{aligned}
 \end{equation}
 
@@ -306,7 +306,7 @@ Figures \ref{test} and \ref{test2} show the discrete energy of our compressible 
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
     %(or a blank line to force the subfigure onto a new line)
   
-    \caption{Graphs of the conserved shadow energy for the Stormer-Verlet scheme. The numerical solution was ran for 1000 wave periods. Spatial  discretisation was set to be 1 / 16. The above figure has a temporal discretisation 1/16 while the below figure has a temporal discretisation of 1/32. }\label{fig:animals}
+    \caption{Graphs of the conserved shadow energy for the Stormer-Verlet scheme. The numerical solution was ran for 100 wave periods. Spatial  discretisation was set to be 1 / 16. The above figure has a temporal discretisation 1/16 while the below figure has a temporal discretisation of 1/32. }\label{fig:animals}
       \label{test2}
 \end{figure}
 
@@ -319,7 +319,7 @@ What is surprising is that the implicit scheme was much faster than the explicit
 % \usepackage{booktabs}
 \begin{table}[]
 \centering
-\caption{$L^2$ error and order of convergence of the numerical solution using an implicit midpoint timestepper after 10 wave periods. The timestep was taken to be equal to the spatial discretisation. We also present the run time of the solution to evaluate the efficiency of the two timesteppers. }
+\caption{$L^2$ error and order of convergence of the numerical solution using an implicit midpoint timestepper after 10 wave periods. The timestep was taken to be equal to the spatial discretisation squared. We also present the run time of the solution to evaluate the efficiency of the two timesteppers. }
 \label{midpointerror}
 \begin{tabular}{@{}llllll@{}}
 \toprule
@@ -345,7 +345,7 @@ $Nx$ & $L^2$ -error & Order       & $L^2$ -error & Order       &         \\
 % \usepackage{booktabs}
 \begin{table}[]
 \centering
-\caption{$L^2$ error and order of convergence of the numerical solution using a Stormer-Verlet timestepper after 10 wave periods. The timestep was taken to be equal to the spatial discretisation. We also present the run time of the solution to evaluate the efficiency of the two timesteppers.  }
+\caption{$L^2$ error and order of convergence of the numerical solution using a Stormer-Verlet timestepper after 10 wave periods. The timestep was taken to be equal to the spatial discretisation squared. We also present the run time of the solution to evaluate the efficiency of the two timesteppers.  }
 \label{sverror}
 \begin{tabular}{@{}llllll@{}}
 \toprule
