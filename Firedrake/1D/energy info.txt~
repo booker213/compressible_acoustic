@@ -1,0 +1,45 @@
+energy_1000_periods_fv_16_16 
+
+1000 wave periods
+16 elements
+1d domain
+dt = 1/16
+constant basis
+theta =0.5
+
+energy_100_2_16_16
+
+100 wave periods
+16 elements
+1d domain
+dt = 1/16
+quadratic basis
+theta = 0.5 
+
+energy_100_1_16_16
+
+100 wave periods
+16 elements
+1d domain
+dt = 1/16
+linear basis
+theta = 0.5
+
+fv_0_6
+
+10 wave periods
+16 elements
+1d domain
+dt = 1/16
+constant basis
+theta = 0.6
+
+fv_0_4
+
+10 wave periods
+16 elements
+1d domain
+dt = 1/16
+constant basis
+theta = 0.6
+
