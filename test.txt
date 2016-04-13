@@ -1,1 +1,4 @@
-test force push
+clean up
+
+
+git rm -r <file or folder>
