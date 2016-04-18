@@ -23,11 +23,11 @@ clc; close all; clear all;
 
 a = 0; % Mesh starting point
 L = 1; % Mesh end point
-Nx = 1024; % Number of elements
+Nx = 2500; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
-periods = 10; % End time for simulation, as period = 1 non dim time
+periods = dt; % End time for simulation, as period = 1 non dim time
 t = 0; % Starting time
 %% Storage
 % Vector for solution
@@ -134,19 +134,19 @@ end
 % xlabel('Number of Periods')
 % hold off
 
-% Exact Solution at time = t_end
-for i = 1:Nx
-    U_exact(i) = sin(2*pi*X(i))*sin(2*pi*(t+0.125));
-    R_exact(i) = cos(2*pi*X(i))*cos(2*pi*(t+0.125));
-    
-    error_U(i) = (U(i) - U_exact(i))^2;
-    error_R(i) = (R(i) - R_exact(i))^2;
-end 
-
+% % Exact Solution at time = t_end
+% for i = 1:Nx
+%     U_exact(i) = sin(2*pi*X(i))*sin(2*pi*(t+0.125));
+%     R_exact(i) = cos(2*pi*X(i))*cos(2*pi*(t+0.125));
+%     
+%     error_U(i) = (U(i) - U_exact(i))^2;
+%     error_R(i) = (R(i) - R_exact(i))^2;
+% end 
 % 
-% l_infty_U = max(error_U);
-% l_infty_R = max(error_R);
-l2_U = sqrt(sum(error_U)/Nx);
-l2_R = sqrt(sum(error_R)/Nx);
+% % 
+% % l_infty_U = max(error_U);
+% % l_infty_R = max(error_R);
+% l2_U = sqrt(sum(error_U)/Nx);
+% l2_R = sqrt(sum(error_R)/Nx);
 
 

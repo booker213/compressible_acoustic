@@ -24,5 +24,17 @@ l2
 
 1 timestep
 
-mid point 255.226s
-stormer verlet 0.788 s
+mid point 310.347s
+stormer verlet 1.039 s
+
+5k
+
+mid point 37.644
+
+sotrmer verlet 0.211
+
+2.5k 
+
+mid point 4.339
+
+stormer ver 0.074
