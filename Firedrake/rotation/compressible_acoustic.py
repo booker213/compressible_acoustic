@@ -9,8 +9,9 @@ from firedrake import *
 # Current mesh is a unit line  with Nx elements.
 
 Nx = 16
+Ny = 16
 Nz = 16
-mesh = UnitSquareMesh(Nx, Nz,  quadrilateral=quadrilateral)
+mesh = UnitCubeMesh(Nx,Ny, Nz)
 
 # Declare timestep
 dt = 1./16.
@@ -19,7 +20,7 @@ dt = 1./16.
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 10.
+end = 1.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
@@ -27,6 +28,7 @@ order_basis = 0
 
 # Declare flux indicator function
 theta = Constant(0.5)
+
 
 # Declare function spaces on the mesh
 # and create mixed function space
@@ -52,14 +54,19 @@ w0 = Function(W)
 # Interpolate expressions
 u0,rho0 = w0.split()
 
-u0.interpolate(Expression(["sin(2*pi*x[0])*sin(2*pi*0.125)", "sin(2*pi*x[1])*sin(2*pi*0.125)"] ))
+u0.interpolate(Expression(["sin(2*pi*x[0])*sin(2*pi*0.125)", "sin(2*pi*x[1])*sin(2*pi*0.125)","sin(2*pi*x[2])*sin(2*pi*0.125)"] ))
 
-rho0.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*0.125) + cos(2*pi*x[1])*cos(2*pi*0.125) "))
+rho0.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*0.125) + cos(2*pi*x[1])*cos(2*pi*0.125)+ cos(2*pi*x[2])*cos(2*pi*0.125) "))
 
 # Assemble initial energy
 E0 = assemble ( (0.5*(inner(u0,u0) + rho0**2))*dx)
 
 #print E0
+
+# Declare angular velocity
+Omega = Function(V)
+Omega.interpolate(Expression(["0.0", "0.0", "0.0"]))
+
 
 # Set up internal boundary normal on mesh 
 # Needed for numerical fluxes in bilinear form
@@ -88,7 +95,7 @@ dHdu0 = u0
 dHdrho0 = rho0
 
 a0 = (dot(u, dFdu_vec) + rho*dFdrho )*dx
-a1 = (dot(-grad(dHdrho), dFdu_vec) + dot(dHdu, grad(dFdrho)))*dx
+a1 = (dot(-grad(dHdrho), dFdu_vec) + dot(dHdu, grad(dFdrho)) - dot(cross(2*Omega, dHdu),dFdu_vec))*dx
 a2 = (jump( dFdrho)*dot((dHdu('-')*(1-theta)+dHdu('+')*theta), n('-')))*dS
 a3 = (-jump( dHdrho)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-')))*dS
 
@@ -96,7 +103,7 @@ a = a0 - 0.5*dt*(a1+a2+a3)
 
 
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx
-L1 = (dot(-grad(dHdrho0), dFdu_vec) + dot(dHdu0, grad(dFdrho)))*dx
+L1 = (dot(-grad(dHdrho0), dFdu_vec) + dot(dHdu0, grad(dFdrho))- dot(cross(2*Omega, dHdu0),dFdu_vec))*dx
 L2 = (jump( dFdrho)*dot((dHdu0('-')*(1-theta)+dHdu0('+')*theta), n('-')))*dS
 L3 = (-jump( dHdrho0)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-')))*dS
 
@@ -147,7 +154,7 @@ while (t < end):
 
 # Create analytic solutions for error analysis
 exact_rho= Function(R)
-exact_rho.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*(t+0.125)) + cos(2*pi*x[1])*cos(2*pi*(t+0.125)) ", t = t))
+exact_rho.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*(t+0.125)) + cos(2*pi*x[1])*cos(2*pi*(t+0.125))+ cos(2*pi*x[2])*cos(2*pi*(t+0.125)) ", t = t))
 
 
 # Print error for density
