@@ -145,5 +145,21 @@ while (t < end):
  print t, abs((E-E0)/E0)
 
 
+# Create analytic solutions for error analysis
+exact_rho= Function(R)
+exact_rho.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*(t+0.125))", t = t))
+
+
+# Print error for density
+error_rho = errornorm(rho, exact_rho,  norm_type='L2')
+print error_rho
+
+exact_u = Function(V)
+exact_u.interpolate(Expression("sin(2*pi*x[0])*sin(2*pi*(t+0.125))", t = t))
+
+# Print error for velocity
+error_u = errornorm(u, exact_u,  norm_type='L2')
+print error_u
+
 # Close energy write
 E_file.close()
