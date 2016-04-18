@@ -1,0 +1,11 @@
+fv-16-16-10
+
+finite volume - constant basis
+
+16x 16 grid
+
+dt = 1/16
+
+10 wave periods
+
+theta = 0.5
