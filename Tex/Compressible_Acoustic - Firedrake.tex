@@ -75,15 +75,7 @@ We will take that $\partial \Omega$ i.e. the boundary of our considered domain i
 
 \[ \hat{\underline{n}}.\cdot \mathbf{u}= 0 \text{ on } \partial \Omega .\]
 
-As our test problem, similar to the MATLAB application, we will consider $\Omega$ = $[0,1]$. 
-By seeking a harmonic wave solution to \eqref{eqns:euler} in our test domain, one can show that a solution is 
-\begin{equation*}
-\begin{aligned}
-u &=  \sin(2\pi x )\sin(2\pi(t+\frac{1}{8})),\\
-\rho &=  \cos(2\pi x) \cos(2\pi (t + \frac{1}{8})),
-\end{aligned}
-\end{equation*}
-where a phase shift of $\frac{1}{8}$ has been introduced to ensure a non-zero solution at the initial time. We will use this analytic solution to verify our numerical model and to provide our initial condition for the fluid's velocity and density.
+
 
 
 Hamiltonian dynamics of compressible fluid flow governed by equations \eqref{eqns:euler} is given by
@@ -184,8 +176,19 @@ Here $L$ is taken to be a vector of all known information, as our problem is uns
 
 The code found with this documentation will follow this same notation, we note that the forms for $a$ and $L$ will be split up into small sums. However we will group terms together as skew-symmetric counterparts, to make the code resemble the mathematical notation. 
 
+\subsection{One -dimensional verification}
 
-\textbf{ Currently testing:} 
+As our test problem, similar to the MATLAB application, we will consider $\Omega$ = $[0,1]$. 
+By seeking a harmonic wave solution to \eqref{eqns:euler} in our test domain, one can show that a solution is 
+\begin{equation*}
+\begin{aligned}
+u &=  \sin(2\pi x )\sin(2\pi(t+\frac{1}{8})),\\
+\rho &=  \cos(2\pi x) \cos(2\pi (t + \frac{1}{8})),
+\end{aligned}
+\end{equation*}
+where a phase shift of $\frac{1}{8}$ has been introduced to ensure a non-zero solution at the initial time. We will use this analytic solution to verify our numerical model and to provide our initial condition for the fluid's velocity and density.
+
+\textbf{ Need to mention the following in the derivation:} 
 \begin{itemize}
 \item We define the variational derivatives before the bilinear form, so that the code for $ a = L$ matches the form of equation \eqref{eqns:discretepb}.
 \item Could include some writeup about mixed function space usage.
@@ -193,9 +196,46 @@ The code found with this documentation will follow this same notation, we note t
 \item Highlight the difference between the use of split() and .split()
 \item While currently not working, initial energy does match MATLAB energy.
 \item This means this is worked out  wrong in the stratified case or the initial condition is wrong.
-\item Results - when code works.
-\item Not sure how to implement stormer-verlet currently.
-\item Current idea is to build separate solvers and not used a mixed space at all.
 \end{itemize}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{error1dfd.png}
+       \caption{Graphs of the conserved energy for the one-dimensional harmonic wave in Firedrake. The numerical solution was ran for 1000 wave periods. Spatial and temporal  discretisation were set to be 1 / 16. The basis was order 0.}
+        \label{test}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{error1dfdbasis2.png}
+       \caption{Graphs of the conserved energy for the one-dimensional harmonic wave in Firedrake. The numerical solution was ran for 100 wave periods. Spatial and temporal  discretisation were set to be 1 / 16. The basis was order 2.}
+        \label{test}
+\end{figure}
+
+
+
+\subsection{Two dimensional verification}
+
+We will now consider the two-dimensional domain  $\Omega$ = $[0,1] \times [0,1]$. We seek again a harmonic wave solution, which yields the following analytic solution for the compressible Euler equations
+\begin{equation*}
+\begin{aligned}
+u &=  \sin(2\pi x )\sin(2\pi(t+\frac{1}{8})),\\
+v &=  \sin(2\pi y )\sin(2\pi(t+\frac{1}{8})),\\
+\rho &=  \bigg (\cos(2\pi x) +\cos(2\pi y) \bigg ) \cos(2\pi (t + \frac{1}{8})).
+\end{aligned}
+\end{equation*}
+Due to the use of a VectorFunctionSpace in Firedrake, extending the existing one-dimensional code to a two-dimensional problem is now fairly simple. 
+The following lines about the mesh and initial condition are changed to be the following
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{error2dfd.png}
+       \caption{Graphs of the conserved energy for the two-dimensional harmonic wave in Firedrake. The numerical solution was ran for 10 wave periods. Spatial and temporal  discretisation were set to be 1 / 16. The basis was order 0.}
+        \label{test}
+\end{figure}
+
 
 \end{document}

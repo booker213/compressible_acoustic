@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.7)  23 MAR 2016 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.7)  18 APR 2016 20:23
 entering extended mode
 **"C:/Users/WillB/OneDrive/Documents/GitHub/compressible_acoustic/Tex/Compressi
 ble_Acoustic - Firedrake.tex"
@@ -209,7 +209,14 @@ Package caption Info: listings package is loaded.
 Package: subcaption 2015/09/15 v1.1-100 Sub-captions (AR)
 \c@subfigure=\count115
 \c@subtable=\count116
-) ("Compressible_Acoustic - Firedrake.aux")
+) ("Compressible_Acoustic - Firedrake.aux"
+
+LaTeX Warning: Label `test' multiply defined.
+
+
+LaTeX Warning: Label `test' multiply defined.
+
+)
 \openout1 = `"Compressible_Acoustic - Firedrake.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
@@ -262,33 +269,56 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
  [1
 Non-PDF special ignored!
 
-{C:/Users/WillB/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
- [5] ("Compressible_Acoustic - Firedrake.aux") ) 
+{C:/Users/WillB/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] <er
+ror1dfd.png, id=23, 449.68pt x 337.26pt>
+File: error1dfd.png Graphic file (type png)
+
+<use error1dfd.png>
+Package pdftex.def Info: error1dfd.png used on input line 204.
+(pdftex.def)             Requested size: 336.05533pt x 252.05408pt.
+ [4] <error1dfdbasis2.png, id=27, 449.68pt x 337.26pt>
+File: error1dfdbasis2.png Graphic file (type png)
+
+<use error1dfdbasis2.png>
+Package pdftex.def Info: error1dfdbasis2.png used on input line 212.
+(pdftex.def)             Requested size: 336.05533pt x 252.05408pt.
+ <error2dfd.png, id=28, 449.68pt x 337.26pt>
+File: error2dfd.png Graphic file (type png)
+
+<use error2dfd.png>
+Package pdftex.def Info: error2dfd.png used on input line 235.
+(pdftex.def)             Requested size: 336.05533pt x 252.05408pt.
+ [5 <./error1dfd.png (PNG copy)>] [6 <./error1dfdbasis2.png (PNG copy)> <./erro
+r2dfd.png (PNG copy)>]
+("Compressible_Acoustic - Firedrake.aux")
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4467 strings out of 493634
- 65366 string characters out of 3141315
- 139935 words of memory out of 3000000
- 7823 multiletter control sequences out of 15000+200000
+ 4488 strings out of 493634
+ 65720 string characters out of 3141315
+ 138935 words of memory out of 3000000
+ 7840 multiletter control sequences out of 15000+200000
  11973 words of font info for 45 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 36i,11n,38p,613b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb>
-Output written on "Compressible_Acoustic - Firedrake.pdf" (5 pages, 152976 byte
+ 36i,11n,38p,613b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on "Compressible_Acoustic - Firedrake.pdf" (6 pages, 171911 byte
 s).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
