@@ -23,11 +23,11 @@ clc; close all; clear all;
 
 a = 0; % Mesh starting point
 L = 1; % Mesh end point
-Nx = 10000; % Number of elements
+Nx = 16; % Number of elements
 dx = (L-a)/Nx; % Element size
 dt = dx; % Timestep discretisation
 theta = 0.5; % Flux constant, 0 < theta < 1
-periods = dt; % End time for simulation, as period = 1 non dim time
+periods = 1000; % End time for simulation, as period = 1 non dim time
 t = 0; % Starting time
 %% Storage
 % Vector for solution
@@ -127,6 +127,7 @@ end
 % Plot Error in Energy
 figure
 hold all
+set(gca,'fontsize', 18)
 plot(linspace(0,periods,periods/dt), (H-H0)/H0)
 title('Relative Error in Energy')
 xlabel('Number of Periods')
