@@ -19,7 +19,7 @@ dt = 1./16.
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 10.
+end = 1000.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
@@ -124,7 +124,7 @@ while (t < end):
  # Update time
  t+= dt
  
- solve(a == L, out)
+ solve(a == L, out, solver_parameters={'ksp_rtol': 1e-15})
  u, rho = out.split()
 
  # Assign appropriate name in results file
@@ -132,7 +132,7 @@ while (t < end):
  rho.rename("Density")
  
  # Output results
- outfile.write(u, rho, time =t)
+ #outfile.write(u, rho, time =t)
  
  # Assign output as previous timestep for next time update
  u0.assign(u)

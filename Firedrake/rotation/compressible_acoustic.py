@@ -131,7 +131,7 @@ while (t < end):
  # Update time
  t+= dt
  
- solve(a == L, out)
+ solve(a == L, out, solver_parameters={'ksp_rtol': 1e-15})
  u, rho = out.split()
 
  # Assign appropriate name in results file
