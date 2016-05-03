@@ -8,11 +8,11 @@ from firedrake import *
 # Create mesh
 # Current mesh is a unit line  with Nx elements.
 
-Nx = 16
+Nx = 32
 mesh = UnitIntervalMesh(Nx)
 
 # Declare timestep
-dt = 1./16.
+dt = 1./32.
 
 # Declare initial and end time
 # Period of waves considered in test is 1s
@@ -22,7 +22,7 @@ end = 10.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
-order_basis = 0 
+order_basis = 1 
 
 # Declare flux indicator function
 theta = Constant(0.5)
@@ -79,9 +79,6 @@ n = FacetNormal(mesh)
 # the normal of the variational derivative and test function to vanish 
 # at the boundary.
 
-# Define discrete divergence
-def div_u(u, p):
-	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
 
 #Define varitional derivatives
 
@@ -90,6 +87,12 @@ def div_u(u, p):
 dHdu0 = u0
 dHdrho0 = rho0
 
+
+# Define discrete divergence
+#def div_u(u, p):
+	#return dot(u, grad(p))*dx + jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-'))*dS
+
+
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx
 L1 = (dot(-grad(dHdrho0), dFdu_vec) + dot(dHdu0, grad(dFdrho)))*dx
 L2 = (jump( dFdrho)*dot((dHdu0('-')*(1-theta)+dHdu0('+')*theta), n('-')))*dS
@@ -97,10 +100,12 @@ L3 = (-jump( dHdrho0)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-'))
 
 L = L0 + 0.5 * dt * ( L1 + L2 + L3 )
 
-a = derivative(L0 - 0.5 * dt * ( L1 + L2 + L3 ), w0)
+a = derivative(L0 - 0.5 * dt * ( L1  + L2 + L3  ), w0)
 
 # Storage for visualisation
 outfile = File('./Results/compressible_acoustic_results.pvd')
+
+u0,rho0 = w0.split()
 
 u0.rename("Velocity")
 rho0.rename("Density")
@@ -113,6 +118,10 @@ outfile.write(u0,rho0, time = t)
 out = Function(W)
 # File for energy output
 E_file = open('./Results/energy.txt', 'w')
+
+
+
+
 
 
 # Solve loop
@@ -129,7 +138,7 @@ while (t < end):
  rho.rename("Density")
  
  # Output results
- outfile.write(u, rho, time =t)
+ #outfile.write(u, rho, time =t)
  
  # Assign output as previous timestep for next time update
  u0.assign(u)
@@ -140,7 +149,7 @@ while (t < end):
  
  E_file.write('%-10s %-10s\n' % (t,abs((E-E0)/E0)))
  # Print time and energy drift, drift should be around machine precision.
- print t, abs((E-E0)/E0)
+ print "At time %g, energy drift is %g" % (t, E-E0)
 
 
 # Create analytic solutions for error analysis
@@ -150,22 +159,16 @@ exact_rho.interpolate(Expression("cos(2*pi*x[0])*cos(2*pi*(t+0.125))", t = t))
 
 # Print error for density
 error_rho = errornorm(rho, exact_rho,  norm_type='L2')
-print error_rho
+print "At time %g, l2 error in density is %g" % (t, error_rho)
 
 exact_u = Function(V)
 exact_u.interpolate(Expression("sin(2*pi*x[0])*sin(2*pi*(t+0.125))", t = t))
 
 # Print error for velocity
 error_u = errornorm(u, exact_u,  norm_type='L2')
-print error_u
+print "At time %g, l2 error in x-velocity is %g" % (t, error_u)
 
 
-#localenergyfile = File('./Results/local_energy.pvd')
-
-#E_local = Function(R, name="Local Energy")
-#E_local = 0.5*(inner(u,u) + rho**2
-
-#localenergyfile.write(E_local , time =t)
 
 
 # Close energy write
