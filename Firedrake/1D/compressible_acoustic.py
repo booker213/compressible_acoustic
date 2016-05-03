@@ -8,21 +8,21 @@ from firedrake import *
 # Create mesh
 # Current mesh is a unit line  with Nx elements.
 
-Nx = 32
+Nx = 16
 mesh = UnitIntervalMesh(Nx)
 
 # Declare timestep
-dt = 1./32.
+dt = 1./16.
 
 # Declare initial and end time
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 10.
+end = 1.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
-order_basis = 1 
+order_basis = 2 
 
 # Declare flux indicator function
 theta = Constant(0.5)
@@ -168,8 +168,12 @@ exact_u.interpolate(Expression("sin(2*pi*x[0])*sin(2*pi*(t+0.125))", t = t))
 error_u = errornorm(u, exact_u,  norm_type='L2')
 print "At time %g, l2 error in x-velocity is %g" % (t, error_u)
 
+localenergyfile = File('./Results/local_energy.pvd')
 
+energy_local = Function(R)
+energy_local.interpolate(dot(u,u)+rho*rho)
 
+localenergyfile.write(energy_local, time=t)
 
 # Close energy write
 E_file.close()
