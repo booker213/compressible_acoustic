@@ -46,7 +46,7 @@ W = V*R
 
 # Function space
 w0 = Function(W)
-(u0,rho0) = split(w0)
+
 
 # Interpolate expressions
 u0,rho0 = w0.split()
@@ -79,27 +79,25 @@ n = FacetNormal(mesh)
 # the normal of the variational derivative and test function to vanish 
 # at the boundary.
 
+# Define discrete divergence
+def div_u(u, p):
+	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+
 #Define varitional derivatives
-dHdu = u
-dHdrho = rho
+
+(u0,rho0) = split(w0)
 
 dHdu0 = u0
 dHdrho0 = rho0
-
-a0 = (dot(u, dFdu_vec) + rho*dFdrho )*dx
-a1 = (dot(-grad(dHdrho), dFdu_vec) + dot(dHdu, grad(dFdrho)))*dx
-a2 = (jump( dFdrho)*dot((dHdu('-')*(1-theta)+dHdu('+')*theta), n('-')))*dS
-a3 = (-jump( dHdrho)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-')))*dS
-
-a = a0 - 0.5*dt*(a1+a2+a3)
-
 
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx
 L1 = (dot(-grad(dHdrho0), dFdu_vec) + dot(dHdu0, grad(dFdrho)))*dx
 L2 = (jump( dFdrho)*dot((dHdu0('-')*(1-theta)+dHdu0('+')*theta), n('-')))*dS
 L3 = (-jump( dHdrho0)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-')))*dS
 
-L = L0 + 0.5*dt*(L1+L2+L3)
+L = L0 + 0.5 * dt * ( L1 + L2 + L3 )
+
+a = derivative(L0 - 0.5 * dt * ( L1 + L2 + L3 ), w0)
 
 # Storage for visualisation
 outfile = File('./Results/compressible_acoustic_results.pvd')
@@ -131,7 +129,7 @@ while (t < end):
  rho.rename("Density")
  
  # Output results
- #outfile.write(u, rho, time =t)
+ outfile.write(u, rho, time =t)
  
  # Assign output as previous timestep for next time update
  u0.assign(u)
@@ -160,6 +158,15 @@ exact_u.interpolate(Expression("sin(2*pi*x[0])*sin(2*pi*(t+0.125))", t = t))
 # Print error for velocity
 error_u = errornorm(u, exact_u,  norm_type='L2')
 print error_u
+
+
+#localenergyfile = File('./Results/local_energy.pvd')
+
+#E_local = Function(R, name="Local Energy")
+#E_local = 0.5*(inner(u,u) + rho**2
+
+#localenergyfile.write(E_local , time =t)
+
 
 # Close energy write
 E_file.close()
