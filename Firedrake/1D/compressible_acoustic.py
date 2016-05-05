@@ -127,29 +127,29 @@ E_file = open('./Results/energy.txt', 'w')
 # Solve loop
 
 while (t < end):
- # Update time
- t+= dt
+    # Update time
+    t+= dt
  
- solve(a == L, out, solver_parameters={'ksp_rtol': 1e-15})
- u, rho = out.split()
+    solve(a == L, out, solver_parameters={'ksp_rtol': 1e-15})
+    u, rho = out.split()
 
- # Assign appropriate name in results file
- u.rename("Velocity")
- rho.rename("Density")
+    # Assign appropriate name in results file
+    u.rename("Velocity")
+    rho.rename("Density")
  
- # Output results
- #outfile.write(u, rho, time =t)
+    # Output results
+    #outfile.write(u, rho, time =t)
  
- # Assign output as previous timestep for next time update
- u0.assign(u)
- rho0.assign(rho)
+    # Assign output as previous timestep for next time update
+    u0.assign(u)
+    rho0.assign(rho)
 
- # Assemble initial energy
- E = assemble ( (0.5*(inner(u,u) + rho**2))*dx)
+    # Assemble initial energy
+    E = assemble ( (0.5*(inner(u,u) + rho**2))*dx)
  
- E_file.write('%-10s %-10s\n' % (t,abs((E-E0)/E0)))
- # Print time and energy drift, drift should be around machine precision.
- print "At time %g, energy drift is %g" % (t, E-E0)
+    E_file.write('%-10s %-10s\n' % (t,abs((E-E0)/E0)))
+    # Print time and energy drift, drift should be around machine precision.
+    print "At time %g, energy drift is %g" % (t, E-E0)
 
 
 # Create analytic solutions for error analysis
