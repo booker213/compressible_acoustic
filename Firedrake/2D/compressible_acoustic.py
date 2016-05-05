@@ -80,6 +80,13 @@ n = FacetNormal(mesh)
 # the normal of the variational derivative and test function to vanish 
 # at the boundary.
 
+
+# Define discrete divergence
+#def div_u(u, p):
+	#return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+
+
+
 #Define varitional derivatives
 dHdu = u
 dHdrho = rho

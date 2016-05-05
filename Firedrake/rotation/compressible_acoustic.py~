@@ -6,7 +6,9 @@ from firedrake import *
 # Test problem will be the one-dimensional waves considered in the MATLAB scripts.
 
 # Create mesh
-# Current mesh is a unit line  with Nx elements.
+# Current mesh is a unit cube  with Nx x Ny x Nz elements.
+
+# Currently has to be 3D otherwise UFl cross product for rotation is wrong.
 
 Nx = 16
 Ny = 16
@@ -86,6 +88,13 @@ n = FacetNormal(mesh)
 # We note that there are no boundary surface integrals ds, as we require
 # the normal of the variational derivative and test function to vanish 
 # at the boundary.
+
+
+
+# Define discrete divergence
+#def div_u(u, p):
+	#return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+
 
 #Define varitional derivatives
 dHdu = u
