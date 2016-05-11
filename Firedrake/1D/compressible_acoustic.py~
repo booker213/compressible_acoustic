@@ -12,13 +12,13 @@ Nx = 16
 mesh = UnitIntervalMesh(Nx)
 
 # Declare timestep
-dt = 1./16.
+dt = 1./( pow(Nx,2))
 
 # Declare initial and end time
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 1.
+end = 1000.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
@@ -89,18 +89,18 @@ dHdrho0 = rho0
 
 
 # Define discrete divergence
-#def div_u(u, p):
-	#return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+def div_u(u, p):
+	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
 
 
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx
-L1 = (dot(-grad(dHdrho0), dFdu_vec) + dot(dHdu0, grad(dFdrho)))*dx
-L2 = (jump( dFdrho)*dot((dHdu0('-')*(1-theta)+dHdu0('+')*theta), n('-')))*dS
-L3 = (-jump( dHdrho0)*dot((dFdu_vec('-')*(1-theta)+dFdu_vec('+')*theta), n('-')))*dS
+L1 = -div_u(dFdu_vec, dHdrho0)
+L2 = div_u(dHdu0, dFdrho)
 
-L = L0 + 0.5 * dt * ( L1 + L2 + L3 )
 
-a = derivative(L0 - 0.5 * dt * ( L1  + L2 + L3  ), w0)
+L = L0 + 0.5 * dt * ( L1 + L2  )
+
+a = derivative(L0 - 0.5 * dt * ( L1  + L2   ), w0)
 
 # Storage for visualisation
 outfile = File('./Results/compressible_acoustic_results.pvd')
@@ -130,7 +130,7 @@ while (t < end):
     # Update time
     t+= dt
  
-    solve(a == L, out, solver_parameters={'ksp_rtol': 1e-15})
+    solve(a == L, out, solver_parameters={'ksp_rtol': 1e-14})
     u, rho = out.split()
 
     # Assign appropriate name in results file
