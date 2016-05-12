@@ -8,8 +8,8 @@ from firedrake import *
 # Create mesh
 # Current mesh is a unit box  with Nx * Ny elements.
 
-Nx = 16
-Nz = 16
+Nx = 4
+Nz = 4
 mesh = UnitSquareMesh(Nx, Nz,  quadrilateral=quadrilateral)
 
 
@@ -20,11 +20,11 @@ dt = 1./( pow(Nx,2))
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 1000.
+end = 1.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
-order_basis = 2 
+order_basis = 0 
 
 # Declare flux indicator function
 theta = Constant(0.5)

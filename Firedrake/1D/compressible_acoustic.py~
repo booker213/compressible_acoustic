@@ -36,10 +36,6 @@ R = FunctionSpace(mesh, "DG", order_basis)
 
 W = V*R
 
-# Define trial and test functions on the mixed space
-
-(u, rho) = TrialFunctions(W)
-(dFdu_vec, dFdrho) = TestFunctions(W)
 
 
 # Initial conditions
@@ -80,6 +76,11 @@ n = FacetNormal(mesh)
 # at the boundary.
 
 
+# Define trial and test functions on the mixed space
+
+(u, rho) = TrialFunctions(W)
+(dFdu_vec, dFdrho) = TestFunctions(W)
+
 #Define varitional derivatives
 
 (u0,rho0) = split(w0)
@@ -88,7 +89,7 @@ dHdu0 = u0
 dHdrho0 = rho0
 
 
-# Define discrete divergence
+# Define discrete divergence operator
 def div_u(u, p):
 	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
 
