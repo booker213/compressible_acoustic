@@ -106,7 +106,7 @@ dHdrho0 = rho0
 
 # Define discrete divergence
 def div_u(u, p):
-	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+	return (dot(u, grad(p)))*dx(domain=p.ufl_domain()) + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
 
 
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx

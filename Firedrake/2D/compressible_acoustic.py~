@@ -8,8 +8,8 @@ from firedrake import *
 # Create mesh
 # Current mesh is a unit box  with Nx * Ny elements.
 
-Nx = 16
-Nz = 16
+Nx = 4
+Nz = 4
 mesh = UnitSquareMesh(Nx, Nz,  quadrilateral=quadrilateral)
 
 
@@ -24,7 +24,7 @@ end = 1.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
-order_basis = 2 
+order_basis = 0 
 
 # Declare flux indicator function
 theta = Constant(0.5)
@@ -93,7 +93,7 @@ dHdrho0 = rho0
 
 # Define discrete divergence
 def div_u(u, p):
-	return (dot(u, grad(p)))*dx + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
+	return (dot(u, grad(p)))*dx(domain=p.ufl_domain()) + (jump(p)*dot((u('-')*(1-theta)+u('+')*theta), n('-')))*dS
 
 
 L0 = (dot(u0, dFdu_vec) + rho0*dFdrho )*dx
