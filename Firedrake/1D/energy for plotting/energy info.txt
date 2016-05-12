@@ -1,18 +1,11 @@
-energy_1000_periods_fv_16_16 
+
+
+
+quadratic_16
 
 1000 wave periods
 16 elements
 1d domain
-dt = 1/16
-constant basis
-theta =0.5
-
-energy_1000_periods_2_16_16
-
-1000 wave periods
-16 elements
-1d domain
-dt = 1/16
+dt = 1/16^2
 quadratic basis
-theta =0.5
-
+theta = 0.5

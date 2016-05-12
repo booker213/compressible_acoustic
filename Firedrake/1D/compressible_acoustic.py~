@@ -8,7 +8,7 @@ from firedrake import *
 # Create mesh
 # Current mesh is a unit line  with Nx elements.
 
-Nx = 16
+Nx = 4
 mesh = UnitIntervalMesh(Nx)
 
 # Declare timestep
@@ -18,11 +18,11 @@ dt = 1./( pow(Nx,2))
 # Period of waves considered in test is 1s
 # We will consider 3 periods initially
 t = 0.
-end = 1000.
+end = 3.
 
 # Declare order of the basis in the elements
 # Test problem will consider order 0 - a finite volume scheme
-order_basis = 2 
+order_basis = 0
 
 # Declare flux indicator function
 theta = Constant(0.5)
